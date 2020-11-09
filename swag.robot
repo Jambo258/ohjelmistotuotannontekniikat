@@ -2,15 +2,15 @@
 Library                 SeleniumLibrary     run_on_failure=Nothing
 
 *** Variables ***
-${URL}          https://saucedemo.com/
+${URL}          https://www.saucedemo.com/
 ${BROWSER}      Chrome
 ${DRIVER}       rf-env/WebDriverManager/chrome/86.0.4240.22/chromedriver_win32/chromedriver.exe
 ${DELAY}        0
 
 *** Test Cases ***
 Test
-    Prepare BROWSER
-    Login   standard_user   secret_sauce
+    Prepare Browser
+    Login  standard_user   secret_sauce
     Add Product     Jacket 
     Open Shopping cart
     Checkout
@@ -19,9 +19,9 @@ Test
 
 
 *** Keywords ***
-Prepare BROWSER
-    Open BROWSER    ${URL}      ${BROWSER}      executable_path=${DRIVER}
-    Maximize    BROWSER Window
+Prepare Browser
+    Open Browser    ${URL}      ${BROWSER}      executable_path=${DRIVER}
+    Maximize Browser Window
     Set Selenium Speed      ${DELAY}
 
 Login
@@ -42,16 +42,16 @@ Open Shopping cart
     Click Element   xpath=//div[@id='shopping_cart_container']//a
 
 Checkout
-    Wait Until Page Contains Element    xpath=//div[@id='shopping_cart_container']//a[contains(.,'CHECKOUT')]
-    Click Element   xpath=//div[@id='shopping_cart_container']//a[contains(.,'CHECKOUT')]
+    Wait Until Page Contains Element    xpath=//div[@id='cart_contents_container']//a[contains(.,'CHECKOUT')]
+    Click Element   xpath=//div[@id='cart_contents_container']//a[contains(.,'CHECKOUT')]
     
 Type Information
     Wait Until Page Contains Element    id=first-name
-    Input Text  id=first-name 123
-    Input Text  id=last-name 123
-    Input Text  id=postal-code 123
+    Input Text  id=first-name   123
+    Input Text  id=last-name    123
+    Input Text  id=postal-code  123
     Submit Form
 
 Overview
-    Wait Until Page Contains Element    xpath=//div[@id='shopping_cart_container']//a[contains(.,'FINISH')]
-    Click Element   xpath=//div[@id='shopping_cart_container']//a[contains(.,'FINISH')]
+    Wait Until Page Contains Element    xpath=//div[@id='checkout_summary_container']//a[contains(.,'FINISH')]
+    Click Element   xpath=//div[@id='checkout_summary_container']//a[contains(.,'FINISH')]
