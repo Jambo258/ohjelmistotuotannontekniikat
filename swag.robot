@@ -55,3 +55,5 @@ Type Information
 Overview
     Wait Until Page Contains Element    xpath=//div[@id='checkout_summary_container']//a[contains(.,'FINISH')]
     Click Element   xpath=//div[@id='checkout_summary_container']//a[contains(.,'FINISH')]
+
+// testiää
